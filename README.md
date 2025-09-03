@@ -6,6 +6,7 @@ Response to reviewers' points:
 
 What I did is the following:
 
+# 03.09.2025
 # install HapHiC
 git clone https://github.com/zengxiaofei/HapHiC.git
 mamba env create -p /scratch/yutang/haphic --file HapHiC/conda_env/environment_py310.yml

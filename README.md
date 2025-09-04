@@ -61,6 +61,6 @@ bwa mem -5SP -t 32 Sikem_utg.fasta Hic_reads_R1.fastq.gz Hic_reads_R2.fastq.gz |
 ln -s /scratch/yutang/sikem/haphic_utg/Sikem_utg.fasta .
 samtools faidx Sikem_utg.fasta
 /scratch/yutang/HapHiC/scripts/../utils/juicer pre -a -q 1 -o out_JBAT /scratch/yutang/sikem/haphic_utg/HiC.filtered.bam scaffolds.raw.agp Sikem_utg.fasta.fai >out_JBAT.log 2>&1
-(java -Djava.awt.headless=true -jar -Xmx32G /scratch/yutang/HapHiC/scripts/../utils/juicer_tools.1.9.9_jcuda.0.8.jar pre out_JBAT.txt out_JBAT.hic.part <(cat out_JBAT.log | grep PRE_C_SIZE | awk '{print $2" "$3}')) &(mvout_JBAT.hic.part out_JBAT.hic)
+(java -Djava.awt.headless=true -jar -Xmx32G /scratch/yutang/HapHiC/scripts/../utils/juicer_tools.1.9.9_jcuda.0.8.jar pre out_JBAT.txt out_JBAT.hic.part <(cat out_JBAT.log | grep PRE_C_SIZE | awk '{print $2" "$3}')) & (mvout_JBAT.hic.part out_JBAT.hic)
 
 ```

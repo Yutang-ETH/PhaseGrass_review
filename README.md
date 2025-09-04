@@ -44,4 +44,11 @@ cp hifiasm_ctg/sikem.asm.p_utg.fasta haphic_utg/Sikem_utg.fasta
 mv /scratch/yutang/manual_curation/sikem_dip/fastq/* haphic_utg
 # HiC includes the following two, Hic_reads_R1.fastq.gz, Hic_reads_R2.fastq.gz
 
+# (1) Align Hi-C data to the assembly, remove PCR duplicates and filter out secondary and supplementary alignments
+bwa index Sikem_utg.fasta
+bwa mem -5SP -t 32 Sikem_utg.fasta Hic_reads_R1.fastq.gz Hic_reads_R2.fastq.gz | samblaster | samtools view - -@ 32 -S -h -b -F 3340 -o HiC.bam
+
+# (2) Filter the alignments with MAPQ 1 (mapping quality ≥ 1) and NM 3 (edit distance < 3)
+/scratch/yutang/HapHiC/utils/filter_bam HiC.bam 1 --nm 3 --threads 32 | samtools view - -b -@ 32 -o HiC.filtered.bam
+
 ```
